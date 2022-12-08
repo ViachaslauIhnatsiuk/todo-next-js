@@ -1,0 +1,10 @@
+.todo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  border-bottom: 1px solid #ededed;
+  font-size: 24px;
+  background-color: #ffffff;
+  cursor: default;
+}
