@@ -20,7 +20,7 @@ const TodoItem: FC<TodoItemProps> = ({ todo }) => {
         className={s.delete__btn}
         onClick={() => deleteTodo(todo.id)}
       ></button>
-      {todoEditMode ? <TodoItemEditForm todo={todo} /> : null}
+      {todoEditMode && <TodoItemEditForm todo={todo} />}
     </li>
   );
 };

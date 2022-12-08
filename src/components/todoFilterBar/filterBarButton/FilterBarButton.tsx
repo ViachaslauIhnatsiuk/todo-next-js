@@ -18,7 +18,7 @@ const FilterBarButton: FC<FilterButtonProps> = (button) => {
       type="button"
       value={button.value}
       className={buttonCurrentClass}
-      onClick={(e) => showFilteredTodos(e)}
+      onClick={showFilteredTodos}
     >
       {button.label}
     </button>
