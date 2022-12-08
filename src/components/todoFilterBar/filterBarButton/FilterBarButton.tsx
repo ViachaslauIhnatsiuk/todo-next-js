@@ -8,15 +8,16 @@ const FilterBarButton: FC<FilterButtonProps> = (button) => {
   const { statusFilterValue } = useContext(Context);
   const { showFilteredTodos } = useTodosFilter();
 
+  const buttonCurrentClass =
+    statusFilterValue === button.value
+      ? `${s.button} ${s.button_active}`
+      : s.button;
+
   return (
     <button
       type="button"
       value={button.value}
-      className={s.button}
-      style={{
-        border:
-          statusFilterValue === button.value ? '1px solid #af2f2f33' : 'none',
-      }}
+      className={buttonCurrentClass}
       onClick={(e) => showFilteredTodos(e)}
     >
       {button.label}

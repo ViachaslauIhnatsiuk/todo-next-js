@@ -7,3 +7,7 @@
   color: #777777;
   cursor: pointer;
 }
+
+.button_active {
+  border: 1px solid #af2f2f33;
+}
