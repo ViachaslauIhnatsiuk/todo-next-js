@@ -1,5 +1,6 @@
 import { useContext, FormEvent } from 'react';
 import { Context } from '../context/context';
+import { v4 as uuidv4 } from 'uuid';
 
 const useTodosListHandle = () => {
   const { todosList, newTodoValue, setTodosList, setNewTodoValue } =
@@ -9,7 +10,7 @@ const useTodosListHandle = () => {
     event.preventDefault();
 
     const newTodo = {
-      id: todosList.length + 1,
+      id: uuidv4(),
       description: newTodoValue,
       isCompleted: false,
     };
@@ -20,13 +21,13 @@ const useTodosListHandle = () => {
     setNewTodoValue('');
   };
 
-  const deleteTodo = (id: number): void => {
+  const deleteTodo = (id: string): void => {
     const updatedTodoList = todosList.filter((todo) => todo.id !== id);
 
     setTodosList(updatedTodoList);
   };
 
-  const toggleTodoStatus = (id: number): void => {
+  const toggleTodoStatus = (id: string): void => {
     const updatedTodoList = todosList.map((todo) => {
       if (todo.id === id) {
         return { ...todo, isCompleted: !todo.isCompleted };
@@ -37,12 +38,16 @@ const useTodosListHandle = () => {
     setTodosList(updatedTodoList);
   };
 
-  const toggleAllTodosStatus = (): void => {
-    const isAnyTodoCompleted = todosList.find(
-      ({ isCompleted }) => isCompleted === false
-    );
+  const isNotCompletedTodosExist = (): boolean => {
+    return todosList.find(({ isCompleted }) => isCompleted === false)
+      ? true
+      : false;
+  };
 
-    if (isAnyTodoCompleted) {
+  const toggleAllTodosStatus = (): void => {
+    const isAnyTodoNotCompleted = isNotCompletedTodosExist();
+
+    if (isAnyTodoNotCompleted) {
       const updatedTodoList = todosList.map(
         (todo) => (todo = { ...todo, isCompleted: true })
       );
@@ -60,6 +65,7 @@ const useTodosListHandle = () => {
   return {
     addTodo,
     deleteTodo,
+    isNotCompletedTodosExist,
     toggleTodoStatus,
     toggleAllTodosStatus,
   };

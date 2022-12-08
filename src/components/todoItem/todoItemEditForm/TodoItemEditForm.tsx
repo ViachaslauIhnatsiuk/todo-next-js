@@ -1,27 +1,19 @@
-import { FC, useEffect, useRef } from 'react';
+import { FC } from 'react';
 import { useTodoEdit } from '../../../hooks/useTodoEdit';
 import { EditFormProps } from './TodoItemEditForm.props';
 import s from './TodoItemEditForm.module.css';
 
 const TodoItemEditForm: FC<EditFormProps> = ({ todo }) => {
-  const { exitTodoEditMode, setEditTodoValue, todoEditMode, editTodoValue } =
+  const { exitTodoEditMode, setEditTodoValue, editTodoValue } =
     useTodoEdit(todo);
-
-  const editFieldRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (!todoEditMode) {
-      editFieldRef.current?.focus();
-    }
-  }, [todoEditMode]);
 
   return (
     <>
       <div className={s.edit__blur} onClick={exitTodoEditMode} />
       <div className={s.edit__wrapper}>
         <input
-          ref={editFieldRef}
           type="text"
+          autoFocus
           value={editTodoValue}
           className={s.edit}
           onKeyPress={exitTodoEditMode}

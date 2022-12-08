@@ -5,12 +5,20 @@ import s from './TodoForm.module.css';
 
 const TodoForm: FC = () => {
   const { todosList, newTodoValue, setNewTodoValue } = useContext(Context);
-  const { addTodo, toggleAllTodosStatus } = useTodosListHandle();
+  const { addTodo, isNotCompletedTodosExist, toggleAllTodosStatus } =
+    useTodosListHandle();
+
+  const toggleStatusButtonClass = isNotCompletedTodosExist()
+    ? s.toggleStatus
+    : `${s.toggleStatus} ${s.toggleStatus_active}`;
 
   return (
     <form className={s.form} onSubmit={addTodo}>
       {todosList.length ? (
-        <label className={s.toggleStatus} onClick={toggleAllTodosStatus} />
+        <label
+          className={toggleStatusButtonClass}
+          onClick={toggleAllTodosStatus}
+        />
       ) : null}
       <input
         className={s.input}
