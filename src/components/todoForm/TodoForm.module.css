@@ -1,0 +1,37 @@
+.form {
+  position: relative;
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: inset 0 -2px 1px rgb(0 0 0 / 3%);
+}
+
+.toggleStatus {
+  position: absolute;
+  top: 10px;
+  left: -8px;
+  padding: 10px 27px 10px 27px;
+  font-size: 22px;
+  color: #e6e6e6;
+  transform: rotate(90deg);
+}
+
+.toggleStatus::before {
+  content: '❯';
+}
+
+.input {
+  width: 100%;
+  padding: 16px 16px 16px 60px;
+  background: rgba(0, 0, 0, 0.003);
+  box-shadow: inset 0 -2px 1px rgb(0 0 0 / 3%);
+  border: none;
+  outline: none;
+  font-size: 24px;
+  line-height: 1.4em;
+}
+
+.input::placeholder {
+  font-weight: 300;
+  color: #e6e6e6;
+  font-style: italic;
+}
