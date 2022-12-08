@@ -6,16 +6,12 @@ const TodoItemDescription: FC<DescriptionProps> = ({
   todo,
   enterTodoEditMode,
 }) => {
-  const descriptionStyle = todo.isCompleted
-    ? { textDecoration: 'line-through', color: '#d9d9d9' }
-    : { textDecoration: 'none', color: 'inherit' };
+  const descriptionCurrentClass = todo.isCompleted
+    ? `${s.description} ${s.description_completed}`
+    : s.description;
 
   return (
-    <span
-      className={s.description}
-      onDoubleClick={enterTodoEditMode}
-      style={descriptionStyle}
-    >
+    <span className={descriptionCurrentClass} onDoubleClick={enterTodoEditMode}>
       {todo.description}
     </span>
   );
