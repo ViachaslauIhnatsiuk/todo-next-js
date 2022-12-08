@@ -1,18 +1,20 @@
 import { FC } from 'react';
-import { ITodoItem } from '../../../models/todoItem.models';
+import { DescriptionProps } from './TodoItemDescription.props';
 import s from './TodoItemDescription.module.css';
 
-const TodoItemDescription: FC<{
-  todo: ITodoItem;
-}> = ({ todo }) => {
+const TodoItemDescription: FC<DescriptionProps> = ({
+  todo,
+  enterTodoEditMode,
+}) => {
+  const descriptionStyle = todo.isCompleted
+    ? { textDecoration: 'line-through', color: '#d9d9d9' }
+    : { textDecoration: 'none', color: 'inherit' };
+
   return (
     <span
       className={s.description}
-      style={
-        todo.isCompleted
-          ? { textDecoration: 'line-through', color: '#d9d9d9' }
-          : { textDecoration: 'none', color: 'inherit' }
-      }
+      onDoubleClick={enterTodoEditMode}
+      style={descriptionStyle}
     >
       {todo.description}
     </span>

@@ -8,3 +8,18 @@
   background-color: #ffffff;
   cursor: default;
 }
+
+.delete__btn {
+  margin: 0;
+  border: 0;
+  background: none;
+  width: 40px;
+  height: 40px;
+  font-size: 30px;
+  color: #cc9a9a;
+  transition: color 0.2s ease-out;
+}
+
+.todo:hover .delete__btn::after {
+  content: '×'
+}
