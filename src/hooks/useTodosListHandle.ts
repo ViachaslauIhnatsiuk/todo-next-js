@@ -9,16 +9,18 @@ const useTodosListHandle = () => {
   const addTodo = (event: FormEvent): void => {
     event.preventDefault();
 
-    const newTodo = {
-      id: uuidv4(),
-      description: newTodoValue,
-      isCompleted: false,
-    };
+    if (newTodoValue.trim()) {
+      const newTodo = {
+        id: uuidv4(),
+        description: newTodoValue,
+        isCompleted: false,
+      };
 
-    const updatedTodoList = [...todosList, newTodo];
+      const updatedTodoList = [...todosList, newTodo];
 
-    setTodosList(updatedTodoList);
-    setNewTodoValue('');
+      setTodosList(updatedTodoList);
+      setNewTodoValue('');
+    }
   };
 
   const deleteTodo = (id: string): void => {
