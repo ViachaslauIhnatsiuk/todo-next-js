@@ -9,11 +9,16 @@ const TodoList: FC = () => {
   const { todosList, statusFilterValue } = useContext(Context);
   const { filterTodosByStatus } = useTodosFilter();
 
-  useEffect(() => {}, [todosList, statusFilterValue]);
+  useEffect(() => {
+    if (todosList.length) {
+      localStorage.setItem('todoList', JSON.stringify(todosList));
+      localStorage.setItem('status', JSON.stringify(statusFilterValue));
+    }
+  }, [todosList, statusFilterValue]);
 
   return (
     <ul className={s.todoList}>
-      {todosList.filter(filterTodosByStatus).map((todo) => (
+      {todosList?.filter(filterTodosByStatus).map((todo) => (
         <TodoItem key={uuidv4()} todo={todo} />
       ))}
     </ul>
